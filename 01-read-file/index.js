@@ -16,6 +16,5 @@ readableStream.on('end', () => {
     }
     arr.splice(index, arr.length - index);
     console.log(arr.join(''));
-});
-    
+});  
 readableStream.on('error', error => console.log('Error', error.message));
