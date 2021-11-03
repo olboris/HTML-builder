@@ -1,7 +1,6 @@
 const fs = require('fs');
 const readline = require('readline');
 const { stdout } = process;
-//const output = fs.createWriteStream('./02-write-file/text.txt');
 
 let rl = readline.createInterface({
   input: process.stdin,
