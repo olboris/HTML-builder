@@ -6,12 +6,12 @@ let folderPath = path.dirname(__filename)+'/styles/';
 
 fs.readdir(folderPath, (err, files) => {
     if (err)
-    stdout.write(err);
+    console.log(err);
     else {
         files.forEach(file => {  
             fs.stat(folderPath+file, (err, stats) => {
               if (err) {
-                stdout.write(err)
+              console.log(err)
                 return
               }
               if (stats.isFile() && path.parse(folderPath+file).ext === '.css') {

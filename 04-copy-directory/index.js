@@ -13,7 +13,7 @@ function copyDir() {
           files.forEach(file => {  
               copyFile(`${path.dirname(__filename)}/files/${file}`, `${path.dirname(__filename)}/files-copy/${file}`, function(err) {
                 if (err) {
-                  stdout.write("Error Found:", err);
+                  console.log("Error Found:", err);
                 }
               });
             });
