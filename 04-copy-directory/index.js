@@ -16,7 +16,7 @@ function copyDir() {
     });
     fs.readdir(path.dirname(__filename)+'/files', (err, files) => {
         if (err)
-        stdout.write(err);
+        console.log(err);
         else {
           files.forEach(file => {  
               copyFile(`${path.dirname(__filename)}/files/${file}`, `${path.dirname(__filename)}/files-copy/${file}`, function(err) {

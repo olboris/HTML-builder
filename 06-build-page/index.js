@@ -17,15 +17,23 @@ readableStream.on('end', () => {
     fs.promises.readdir(componentsPath)
     .then(function(files){
         files.forEach(file => {
-            fs.promises.readFile(path.join(componentsPath, file), 'utf-8')
-            .then(function(data) {
-                const output = fs.createWriteStream(path.dirname(__filename)+'/project-dist/'+'index.html');
-                html = html.replace(`{{${path.parse(path.join(componentsPath, file)).name}}}`, data);
-                output.write(html);
-            })
-            .catch(function(error) {
-                console.log(error);
-             })
+            fs.stat(path.join(componentsPath, file), (err, stats) => {
+                if (err) {
+                    console.log(err)
+                      return
+                    }
+                if (stats.isFile() && path.parse(path.join(componentsPath, file)).ext === '.html') {
+                    fs.promises.readFile(path.join(componentsPath, file), 'utf-8')
+                    .then(function(data) {
+                        const output = fs.createWriteStream(path.dirname(__filename)+'/project-dist/'+'index.html');
+                        html = html.replace(`{{${path.parse(path.join(componentsPath, file)).name}}}`, data);
+                        output.write(html);
+                    })
+                    .catch(function(error) {
+                        console.log(error);
+                     })
+                }
+            });
         });
     })
     .catch(function(error) {
